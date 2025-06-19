@@ -19,7 +19,7 @@ jobs:
         node-version: 22
 
     - name: Build Docker image
-      run: docker build -t ${{ secrets.DOCKER_USERNAME }}/sample-app:gha .
+      run: echo ${{ secrets.DOCKER_USERNAME }} && docker build -t ${{ secrets.DOCKER_USERNAME }}/sample-app:gha .
 
     - name: Run tests
       run: echo "Put your testing command here if you have"
