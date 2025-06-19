@@ -22,7 +22,7 @@ jobs:
       run: echo ${{ secrets.DOCKER_USERNAME }} && docker build -t ${{ secrets.DOCKER_USERNAME }}/sample-app:gha .
 
     - name: Run tests
-      run: echo "Put your testing command here if you have"
+      run: echo "Put your testing command here if you have."
 
     - name: Log in to Docker Hub
       uses: docker/login-action@f4ef78c080cd8ba55a85445d5b36e214a81df20a
