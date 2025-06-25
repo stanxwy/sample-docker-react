@@ -2,8 +2,8 @@ pipeline {
     agent any
     environment {
         GITHUB_REPO = "https://github.com/WilliamDJR/sample-docker-react.git"
-        DOCKERHUB_USER = "willido"
-        DOCKERHUB_CREDS = "dockerhub_willido"
+        DOCKERHUB_USER = "anon101"
+        DOCKERHUB_CREDS = "dockerhub_anon101"
     }
 
     stages {
