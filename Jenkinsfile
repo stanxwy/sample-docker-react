@@ -20,7 +20,7 @@ pipeline {
         }
         stage('Run Tests') {
             steps {
-                echo 'Put your testing command here if you have'
+                echo 'Put your testing command here if you have...'
             }
         }
         stage('Publish Image') {
