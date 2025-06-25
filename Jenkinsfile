@@ -1,24 +1,38 @@
 pipeline {
     agent any
-    tools {
-        maven 'maven'
+    environment {
+        GITHUB_REPO = "https://github.com/WilliamDJR/sample-docker-react.git"
+        DOCKERHUB_USER = "willido"
+        DOCKERHUB_CREDS = "dockerhub_willido"
     }
+
     stages {
-        stage('pull code') {
+
+        stage('CheckOut Code') {
             steps {
-                echo 'staring......'
-                git branch: 'main', url: 'https://github.com/stanxwy/sample-docker-react.git'
+                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: "$GITHUB_REPO"]])
             }
         }
-        stage('build') {
+        stage('Build Image') {
             steps {
-                echo 'building......'
+                sh 'docker build -t $DOCKERHUB_USER/sample-app:jks .'
             }
         }
-        stage('deploy') {
+        stage('Run Tests') {
             steps {
-                echo 'deploying......'
+                echo 'Put your testing command here if you have'
             }
         }
+        stage('Publish Image') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: "$DOCKERHUB_CREDS", passwordVariable: 'PASSWORD', usernameVariable: 'USERNAME')]) {
+                    sh '''
+                        docker login -u $USERNAME -p $PASSWORD
+                        docker image push $USERNAME/sample-app:pipeline
+                    '''
+                }
+            }
+        }        
+        
     }
 }
