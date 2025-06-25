@@ -15,7 +15,7 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-                sh 'docker build -t $DOCKERHUB_USER/sample-app:jks .'
+                sh 'docker build -t $DOCKERHUB_USER/sample-app:pipeline .'
             }
         }
         stage('Run Tests') {
